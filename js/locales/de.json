@@ -1,0 +1,76 @@
+{
+  "app": {
+    "title": "Aufgabenliste"
+  },
+  "button": {
+    "add": "Hinzufügen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "watchAd": "Anzeige ansehen und Analyse erhalten",
+    "edit": "Bearbeiten",
+    "delete": "Löschen"
+  },
+  "input": {
+    "placeholder": "Neue Aufgabe hinzufügen...",
+    "search": "Aufgaben durchsuchen..."
+  },
+  "filter": {
+    "priority": "Priorität:",
+    "category": "Kategorie:",
+    "all": "Alle",
+    "active": "Aktiv",
+    "completed": "Abgeschlossen",
+    "today": "Heute",
+    "week": "Diese Woche"
+  },
+  "progress": {
+    "today": "Fortschritt heute",
+    "of": "von"
+  },
+  "priority": {
+    "high": "Hoch",
+    "medium": "Mittel",
+    "low": "Niedrig"
+  },
+  "category": {
+    "work": "Arbeit",
+    "personal": "Persönlich",
+    "health": "Gesundheit",
+    "learning": "Lernen"
+  },
+  "stats": {
+    "title": "Wöchentliche Statistiken",
+    "byDay": "Nach Tag",
+    "total": "Gesamtzahl der Aufgaben",
+    "thisWeek": "Diese Woche",
+    "completion": "Fertigstellungsquote"
+  },
+  "premium": {
+    "title": "KI-Produktivitätsanalyse",
+    "description": "Analysieren Sie Ihre Aufgabenmuster und erhalten Sie Produktivitätstipps",
+    "analysisTitle": "Ergebnisse der Produktivitätsanalyse",
+    "analyzing": "Wird analysiert..."
+  },
+  "modal": {
+    "editTitle": "Aufgabe bearbeiten"
+  },
+  "label": {
+    "title": "Titel:",
+    "priority": "Priorität:",
+    "category": "Kategorie:",
+    "dueDate": "Fälligkeitsdatum:",
+    "notes": "Notizen:"
+  },
+  "empty": {
+    "message": "Noch keine Aufgaben. Fügen Sie eine hinzu, um zu beginnen!"
+  },
+  "confirm": {
+    "delete": "Möchten Sie diese Aufgabe wirklich löschen?"
+  },
+  "analysis": {
+    "overview": "Übersicht",
+    "priorities": "Prioritätsanalyse",
+    "categories": "Kategorieanalyse",
+    "tips": "Produktivitätstipps"
+  }
+}

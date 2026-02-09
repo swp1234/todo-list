@@ -1,0 +1,701 @@
+/**
+ * Todo List App - Main Application Logic
+ * Features: CRUD, priorities, categories, due dates, dark mode, statistics, drag-drop
+ */
+
+class TodoApp {
+    constructor() {
+        this.todos = [];
+        this.currentFilter = 'all';
+        this.currentPriorityFilter = '';
+        this.currentCategoryFilter = '';
+        this.searchQuery = '';
+        this.currentEditId = null;
+        this.touchStartX = 0;
+        this.draggedItem = null;
+
+        this.init();
+    }
+
+    /**
+     * Initialize app
+     */
+    init() {
+        this.loadTodos();
+        this.setupEventListeners();
+        this.setupTheme();
+        this.registerServiceWorker();
+        this.loadAds();
+        this.renderTodos();
+        this.updateProgress();
+        this.updateStats();
+    }
+
+    /**
+     * Setup event listeners
+     */
+    setupEventListeners() {
+        // Add todo
+        document.getElementById('btn-add').addEventListener('click', () => this.addTodo());
+        document.getElementById('input-todo').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') this.addTodo();
+        });
+
+        // Filters
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                this.currentFilter = e.target.getAttribute('data-filter');
+                this.renderTodos();
+            });
+        });
+
+        // Priority and category filters
+        document.getElementById('select-priority').addEventListener('change', (e) => {
+            this.currentPriorityFilter = e.target.value;
+            this.renderTodos();
+        });
+
+        document.getElementById('select-category').addEventListener('change', (e) => {
+            this.currentCategoryFilter = e.target.value;
+            this.renderTodos();
+        });
+
+        // Search
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            this.searchQuery = e.target.value.toLowerCase();
+            this.renderTodos();
+        });
+
+        // Theme toggle
+        document.getElementById('theme-toggle').addEventListener('click', () => this.toggleTheme());
+
+        // Modal close buttons
+        document.getElementById('modal-close').addEventListener('click', () => this.closeEditModal());
+        document.getElementById('modal-cancel').addEventListener('click', () => this.closeEditModal());
+        document.getElementById('modal-save').addEventListener('click', () => this.saveEdit());
+
+        document.getElementById('modal-premium-close').addEventListener('click', () => this.closePremiumModal());
+
+        // Premium button
+        document.getElementById('btn-premium').addEventListener('click', () => this.showPremiumAnalysis());
+
+        // Close modals on background click
+        document.getElementById('modal-edit').addEventListener('click', (e) => {
+            if (e.target.id === 'modal-edit') this.closeEditModal();
+        });
+
+        document.getElementById('modal-premium').addEventListener('click', (e) => {
+            if (e.target.id === 'modal-premium') this.closePremiumModal();
+        });
+
+        // Language change event
+        window.addEventListener('languageChanged', () => {
+            this.renderTodos();
+            this.updateStats();
+            this.updateProgress();
+        });
+    }
+
+    /**
+     * Setup theme (dark/light mode)
+     */
+    setupTheme() {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        this.applyTheme(savedTheme);
+    }
+
+    /**
+     * Apply theme
+     */
+    applyTheme(theme) {
+        const body = document.body;
+        if (theme === 'light') {
+            body.classList.add('light-mode');
+        } else {
+            body.classList.remove('light-mode');
+        }
+        localStorage.setItem('theme', theme);
+    }
+
+    /**
+     * Toggle between dark and light mode
+     */
+    toggleTheme() {
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        this.applyTheme(newTheme);
+    }
+
+    /**
+     * Register service worker for PWA
+     */
+    registerServiceWorker() {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(err => {
+                console.log('ServiceWorker registration failed:', err);
+            });
+        }
+    }
+
+    /**
+     * Load ads
+     */
+    loadAds() {
+        if (typeof window.adsbygoogle !== 'undefined') {
+            window.adsbygoogle = window.adsbygoogle || [];
+            window.adsbygoogle.push({
+                google_ad_client: 'ca-pub-3600813755953882',
+                enable_page_level_ads: true
+            });
+        }
+    }
+
+    /**
+     * Load todos from localStorage
+     */
+    loadTodos() {
+        const saved = localStorage.getItem('todos');
+        this.todos = saved ? JSON.parse(saved) : [];
+    }
+
+    /**
+     * Save todos to localStorage
+     */
+    saveTodos() {
+        localStorage.setItem('todos', JSON.stringify(this.todos));
+    }
+
+    /**
+     * Add new todo
+     */
+    addTodo() {
+        const input = document.getElementById('input-todo');
+        const title = input.value.trim();
+
+        if (!title) return;
+
+        const todo = {
+            id: Date.now(),
+            title,
+            completed: false,
+            priority: 'medium',
+            category: 'personal',
+            dueDate: '',
+            notes: '',
+            createdAt: new Date().toISOString(),
+            completedAt: null
+        };
+
+        this.todos.push(todo);
+        this.saveTodos();
+        input.value = '';
+        this.renderTodos();
+        this.updateProgress();
+        this.updateStats();
+    }
+
+    /**
+     * Toggle todo completion
+     */
+    toggleTodo(id) {
+        const todo = this.todos.find(t => t.id === id);
+        if (todo) {
+            todo.completed = !todo.completed;
+            todo.completedAt = todo.completed ? new Date().toISOString() : null;
+            this.saveTodos();
+            this.renderTodos();
+            this.updateProgress();
+            this.updateStats();
+
+            if (todo.completed) {
+                this.playConfetti();
+            }
+        }
+    }
+
+    /**
+     * Open edit modal
+     */
+    openEditModal(id) {
+        const todo = this.todos.find(t => t.id === id);
+        if (!todo) return;
+
+        this.currentEditId = id;
+        document.getElementById('edit-title').value = todo.title;
+        document.getElementById('edit-priority').value = todo.priority;
+        document.getElementById('edit-category').value = todo.category;
+        document.getElementById('edit-duedate').value = todo.dueDate;
+        document.getElementById('edit-notes').value = todo.notes;
+
+        document.getElementById('modal-edit').classList.remove('hidden');
+    }
+
+    /**
+     * Close edit modal
+     */
+    closeEditModal() {
+        document.getElementById('modal-edit').classList.add('hidden');
+        this.currentEditId = null;
+    }
+
+    /**
+     * Save edited todo
+     */
+    saveEdit() {
+        const todo = this.todos.find(t => t.id === this.currentEditId);
+        if (!todo) return;
+
+        todo.title = document.getElementById('edit-title').value.trim();
+        todo.priority = document.getElementById('edit-priority').value;
+        todo.category = document.getElementById('edit-category').value;
+        todo.dueDate = document.getElementById('edit-duedate').value;
+        todo.notes = document.getElementById('edit-notes').value;
+
+        this.saveTodos();
+        this.closeEditModal();
+        this.renderTodos();
+        this.updateProgress();
+        this.updateStats();
+    }
+
+    /**
+     * Delete todo
+     */
+    deleteTodo(id) {
+        if (confirm(i18n.t('confirm.delete'))) {
+            this.todos = this.todos.filter(t => t.id !== id);
+            this.saveTodos();
+            this.renderTodos();
+            this.updateProgress();
+            this.updateStats();
+        }
+    }
+
+    /**
+     * Filter todos based on current filters
+     */
+    getFilteredTodos() {
+        let filtered = this.todos;
+
+        // Filter by status
+        if (this.currentFilter === 'active') {
+            filtered = filtered.filter(t => !t.completed);
+        } else if (this.currentFilter === 'completed') {
+            filtered = filtered.filter(t => t.completed);
+        } else if (this.currentFilter === 'today') {
+            const today = new Date().toISOString().split('T')[0];
+            filtered = filtered.filter(t => {
+                const dueDate = t.dueDate || '';
+                const createdDate = t.createdAt.split('T')[0];
+                return dueDate === today || createdDate === today;
+            });
+        } else if (this.currentFilter === 'week') {
+            const now = new Date();
+            const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+            filtered = filtered.filter(t => {
+                const createdDate = new Date(t.createdAt);
+                return createdDate >= weekAgo;
+            });
+        }
+
+        // Filter by priority
+        if (this.currentPriorityFilter) {
+            filtered = filtered.filter(t => t.priority === this.currentPriorityFilter);
+        }
+
+        // Filter by category
+        if (this.currentCategoryFilter) {
+            filtered = filtered.filter(t => t.category === this.currentCategoryFilter);
+        }
+
+        // Filter by search
+        if (this.searchQuery) {
+            filtered = filtered.filter(t =>
+                t.title.toLowerCase().includes(this.searchQuery) ||
+                t.notes.toLowerCase().includes(this.searchQuery)
+            );
+        }
+
+        return filtered;
+    }
+
+    /**
+     * Get priority badge emoji
+     */
+    getPriorityBadge(priority) {
+        const badges = {
+            high: '🔴',
+            medium: '🟡',
+            low: '🟢'
+        };
+        return badges[priority] || '';
+    }
+
+    /**
+     * Get category badge emoji
+     */
+    getCategoryBadge(category) {
+        const badges = {
+            work: '💼',
+            personal: '🎯',
+            health: '💪',
+            learning: '📚'
+        };
+        return badges[category] || '';
+    }
+
+    /**
+     * Get priority label
+     */
+    getPriorityLabel(priority) {
+        const labels = {
+            high: i18n.t('priority.high'),
+            medium: i18n.t('priority.medium'),
+            low: i18n.t('priority.low')
+        };
+        return labels[priority] || priority;
+    }
+
+    /**
+     * Get category label
+     */
+    getCategoryLabel(category) {
+        const labels = {
+            work: i18n.t('category.work'),
+            personal: i18n.t('category.personal'),
+            health: i18n.t('category.health'),
+            learning: i18n.t('category.learning')
+        };
+        return labels[category] || category;
+    }
+
+    /**
+     * Check if due date is overdue
+     */
+    isOverdue(dueDate) {
+        if (!dueDate) return false;
+        return new Date(dueDate) < new Date();
+    }
+
+    /**
+     * Render todo list
+     */
+    renderTodos() {
+        const todoList = document.getElementById('todo-list');
+        const emptyState = document.getElementById('empty-state');
+        const filtered = this.getFilteredTodos();
+
+        todoList.innerHTML = '';
+
+        if (filtered.length === 0) {
+            emptyState.classList.remove('hidden');
+            return;
+        }
+
+        emptyState.classList.add('hidden');
+
+        filtered.forEach(todo => {
+            const li = document.createElement('li');
+            li.className = 'todo-item';
+            if (todo.completed) li.classList.add('completed');
+            li.draggable = true;
+            li.dataset.id = todo.id;
+
+            const priorityBadge = this.getPriorityBadge(todo.priority);
+            const categoryBadge = this.getCategoryBadge(todo.category);
+            const isOverdue = this.isOverdue(todo.dueDate) && !todo.completed;
+
+            let dueDateHtml = '';
+            if (todo.dueDate) {
+                dueDateHtml = `
+                    <span class="due-date ${isOverdue ? 'overdue' : ''}">
+                        📅 ${i18n.formatDate(todo.dueDate)}
+                    </span>
+                `;
+            }
+
+            li.innerHTML = `
+                <input type="checkbox" class="todo-checkbox" ${todo.completed ? 'checked' : ''}>
+                <div class="todo-content">
+                    <div class="todo-header">
+                        <span class="todo-text">${this.escapeHtml(todo.title)}</span>
+                        <span class="priority-badge ${todo.priority}">${priorityBadge} ${this.getPriorityLabel(todo.priority)}</span>
+                        <span class="category-badge">${categoryBadge} ${this.getCategoryLabel(todo.category)}</span>
+                    </div>
+                    <div class="todo-meta">
+                        ${dueDateHtml}
+                        ${todo.notes ? `<div style="margin-top: 4px; color: rgba(232,232,240,0.6);">📝 ${this.escapeHtml(todo.notes)}</div>` : ''}
+                    </div>
+                </div>
+                <div class="todo-actions">
+                    <button class="btn-edit" title="Edit">✎</button>
+                    <button class="btn-delete" title="Delete">✕</button>
+                </div>
+            `;
+
+            // Event listeners
+            li.querySelector('.todo-checkbox').addEventListener('change', () => this.toggleTodo(todo.id));
+            li.querySelector('.btn-edit').addEventListener('click', () => this.openEditModal(todo.id));
+            li.querySelector('.btn-delete').addEventListener('click', () => this.deleteTodo(todo.id));
+
+            // Drag and drop
+            li.addEventListener('dragstart', (e) => this.handleDragStart(e, todo.id));
+            li.addEventListener('dragend', (e) => this.handleDragEnd(e));
+            li.addEventListener('dragover', (e) => this.handleDragOver(e));
+            li.addEventListener('drop', (e) => this.handleDrop(e, todo.id));
+
+            todoList.appendChild(li);
+        });
+    }
+
+    /**
+     * Drag and drop handlers
+     */
+    handleDragStart(e, id) {
+        this.draggedItem = id;
+        e.currentTarget.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+    }
+
+    handleDragEnd(e) {
+        e.currentTarget.classList.remove('dragging');
+    }
+
+    handleDragOver(e) {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+    }
+
+    handleDrop(e, targetId) {
+        e.preventDefault();
+        if (!this.draggedItem || this.draggedItem === targetId) return;
+
+        const draggedIndex = this.todos.findIndex(t => t.id === this.draggedItem);
+        const targetIndex = this.todos.findIndex(t => t.id === targetId);
+
+        if (draggedIndex > -1 && targetIndex > -1) {
+            [this.todos[draggedIndex], this.todos[targetIndex]] = [this.todos[targetIndex], this.todos[draggedIndex]];
+            this.saveTodos();
+            this.renderTodos();
+        }
+
+        this.draggedItem = null;
+    }
+
+    /**
+     * Update progress bar
+     */
+    updateProgress() {
+        const today = new Date().toISOString().split('T')[0];
+        const todayTodos = this.todos.filter(t => {
+            const dueDate = t.dueDate || t.createdAt.split('T')[0];
+            return dueDate === today;
+        });
+
+        const completed = todayTodos.filter(t => t.completed).length;
+        const total = todayTodos.length;
+        const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+        document.getElementById('completed-count').textContent = completed;
+        document.getElementById('total-count').textContent = total;
+        document.getElementById('progress-percent').textContent = `${percent}%`;
+        document.getElementById('progress-fill').style.width = `${percent}%`;
+    }
+
+    /**
+     * Update statistics
+     */
+    updateStats() {
+        const statTotal = this.todos.length;
+        const statCompleted = this.todos.filter(t => t.completed).length;
+        const statCompletionRate = statTotal > 0 ? Math.round((statCompleted / statTotal) * 100) : 0;
+
+        const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+        const thisWeekTodos = this.todos.filter(t => new Date(t.createdAt) >= weekAgo);
+
+        document.getElementById('stat-total').textContent = statTotal;
+        document.getElementById('stat-this-week').textContent = thisWeekTodos.length;
+        document.getElementById('stat-completion').textContent = `${statCompletionRate}%`;
+
+        // Update weekly chart
+        this.updateWeeklyChart();
+    }
+
+    /**
+     * Update weekly chart
+     */
+    updateWeeklyChart() {
+        const chartBars = document.querySelectorAll('.chart-bar');
+        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        const counts = new Array(7).fill(0);
+
+        const today = new Date();
+        const dayOfWeek = today.getDay();
+
+        // Calculate start of week (Monday)
+        const startOfWeek = new Date(today);
+        startOfWeek.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+
+        // Count todos by day
+        this.todos.forEach(todo => {
+            const todoDate = new Date(todo.createdAt);
+            const diffTime = todoDate - startOfWeek;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays >= 0 && diffDays < 7) {
+                counts[diffDays]++;
+            }
+        });
+
+        const maxCount = Math.max(...counts, 1);
+
+        chartBars.forEach((bar, index) => {
+            const barElement = bar.querySelector('.bar');
+            const height = (counts[index] / maxCount) * 100;
+            barElement.style.height = `${height}%`;
+        });
+    }
+
+    /**
+     * Show premium analysis modal
+     */
+    showPremiumAnalysis() {
+        document.getElementById('modal-premium').classList.remove('hidden');
+        const content = document.getElementById('premium-content');
+        content.innerHTML = '<div class="loading"><div class="spinner"></div><p>분석 중...</p></div>';
+
+        // Simulate ad watching and analysis
+        setTimeout(() => {
+            this.generatePremiumAnalysis();
+        }, 2000);
+    }
+
+    /**
+     * Generate premium analysis
+     */
+    generatePremiumAnalysis() {
+        const content = document.getElementById('premium-content');
+
+        const totalTodos = this.todos.length;
+        const completedTodos = this.todos.filter(t => t.completed).length;
+        const completionRate = totalTodos > 0 ? Math.round((completedTodos / totalTodos) * 100) : 0;
+
+        const highPriority = this.todos.filter(t => t.priority === 'high').length;
+        const workTodos = this.todos.filter(t => t.category === 'work').length;
+        const learningTodos = this.todos.filter(t => t.category === 'learning').length;
+
+        // Estimate productivity level
+        let productivityLevel = 'Good';
+        if (completionRate >= 80) productivityLevel = 'Excellent';
+        if (completionRate <= 40) productivityLevel = 'Needs Improvement';
+
+        const html = `
+            <div class="analysis-result">
+                <div class="analysis-item">
+                    <h4>📊 ${i18n.t('analysis.overview') || '종합 분석'}</h4>
+                    <p>당신은 총 <strong>${totalTodos}</strong>개의 할일 중 <strong>${completedTodos}</strong>개를 완료했습니다.
+                    완료율은 <strong>${completionRate}%</strong>이며, 생산성 수준은 <strong>${productivityLevel}</strong> 입니다.</p>
+                </div>
+
+                <div class="analysis-item">
+                    <h4>🎯 ${i18n.t('analysis.priorities') || '우선순위 분석'}</h4>
+                    <p>높은 우선순위 할일이 <strong>${highPriority}</strong>개 있습니다.
+                    이들에 집중하면 더 효율적인 업무 처리가 가능합니다.</p>
+                </div>
+
+                <div class="analysis-item">
+                    <h4>💼 ${i18n.t('analysis.categories') || '카테고리 분석'}</h4>
+                    <p>업무 관련 할일: <strong>${workTodos}</strong>개, 학습 관련 할일: <strong>${learningTodos}</strong>개.
+                    일과 학습의 균형을 적절히 유지하고 있습니다.</p>
+                </div>
+
+                <div class="analysis-item">
+                    <h4>💡 ${i18n.t('analysis.tips') || '생산성 팁'}</h4>
+                    <ul style="margin-top: 8px; margin-left: 20px;">
+                        <li>매일 아침 오늘의 할일 목록을 확인하세요</li>
+                        <li>높은 우선순위 할일부터 처리하세요</li>
+                        <li>마감일을 설정하고 시간 관리를 하세요</li>
+                        <li>주 1회 이상 완료한 할일을 검토하세요</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+
+        content.innerHTML = html;
+    }
+
+    /**
+     * Close premium modal
+     */
+    closePremiumModal() {
+        document.getElementById('modal-premium').classList.add('hidden');
+    }
+
+    /**
+     * Play confetti animation
+     */
+    playConfetti() {
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const confetti = [];
+        for (let i = 0; i < 50; i++) {
+            confetti.push({
+                x: Math.random() * canvas.width,
+                y: -10,
+                size: Math.random() * 5 + 3,
+                speedX: Math.random() * 4 - 2,
+                speedY: Math.random() * 7 + 4,
+                color: ['#2980b9', '#3498db', '#e74c3c', '#f39c12', '#27ae60'][Math.floor(Math.random() * 5)],
+                opacity: 1
+            });
+        }
+
+        const animate = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < confetti.length; i++) {
+                const p = confetti[i];
+                p.x += p.speedX;
+                p.y += p.speedY;
+                p.opacity -= 0.015;
+
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.opacity;
+                ctx.fillRect(p.x, p.y, p.size, p.size);
+            }
+
+            confetti = confetti.filter(p => p.opacity > 0);
+
+            if (confetti.length > 0) {
+                requestAnimationFrame(animate);
+            } else {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        };
+
+        animate();
+    }
+
+    /**
+     * Escape HTML to prevent XSS
+     */
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+}
+
+// Initialize app when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        const app = new TodoApp();
+    });
+} else {
+    const app = new TodoApp();
+}

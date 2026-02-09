@@ -1,0 +1,76 @@
+{
+  "app": {
+    "title": "Lista de Tareas"
+  },
+  "button": {
+    "add": "Agregar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "watchAd": "Ver Anuncio y Obtener Análisis",
+    "edit": "Editar",
+    "delete": "Eliminar"
+  },
+  "input": {
+    "placeholder": "Añade una nueva tarea...",
+    "search": "Buscar tareas..."
+  },
+  "filter": {
+    "priority": "Prioridad:",
+    "category": "Categoría:",
+    "all": "Todas",
+    "active": "Activas",
+    "completed": "Completadas",
+    "today": "Hoy",
+    "week": "Esta Semana"
+  },
+  "progress": {
+    "today": "Progreso de Hoy",
+    "of": "de"
+  },
+  "priority": {
+    "high": "Alta",
+    "medium": "Media",
+    "low": "Baja"
+  },
+  "category": {
+    "work": "Trabajo",
+    "personal": "Personal",
+    "health": "Salud",
+    "learning": "Aprendizaje"
+  },
+  "stats": {
+    "title": "Estadísticas Semanales",
+    "byDay": "Por Día",
+    "total": "Total de Tareas",
+    "thisWeek": "Esta Semana",
+    "completion": "Tasa de Finalización"
+  },
+  "premium": {
+    "title": "Análisis de Productividad con IA",
+    "description": "Analiza tus patrones de tareas y obtén consejos de productividad",
+    "analysisTitle": "Resultados del Análisis de Productividad",
+    "analyzing": "Analizando..."
+  },
+  "modal": {
+    "editTitle": "Editar Tarea"
+  },
+  "label": {
+    "title": "Título:",
+    "priority": "Prioridad:",
+    "category": "Categoría:",
+    "dueDate": "Fecha de Vencimiento:",
+    "notes": "Notas:"
+  },
+  "empty": {
+    "message": "Sin tareas aún. ¡Añade una para empezar!"
+  },
+  "confirm": {
+    "delete": "¿Estás seguro de que quieres eliminar esta tarea?"
+  },
+  "analysis": {
+    "overview": "Resumen",
+    "priorities": "Análisis de Prioridades",
+    "categories": "Análisis de Categorías",
+    "tips": "Consejos de Productividad"
+  }
+}

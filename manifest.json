@@ -1,0 +1,52 @@
+{
+  "name": "Todo List - Smart Task Manager",
+  "short_name": "Todo List",
+  "description": "A smart todo list app with priorities, categories, and AI productivity analysis",
+  "start_url": "/todo-list/index.html",
+  "scope": "/todo-list/",
+  "display": "standalone",
+  "background_color": "#0f0f23",
+  "theme_color": "#2980b9",
+  "orientation": "portrait-primary",
+  "categories": ["productivity"],
+  "screenshots": [
+    {
+      "src": "icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "icons": [
+    {
+      "src": "icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Add Task",
+      "short_name": "Add",
+      "description": "Create a new task",
+      "url": "/todo-list/index.html?action=add",
+      "icons": [
+        {
+          "src": "icon-192.svg",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

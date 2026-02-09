@@ -1,0 +1,76 @@
+{
+  "app": {
+    "title": "タスクリスト"
+  },
+  "button": {
+    "add": "追加",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "watchAd": "広告を見て分析結果を取得",
+    "edit": "編集",
+    "delete": "削除"
+  },
+  "input": {
+    "placeholder": "新しいタスクを入力...",
+    "search": "タスクを検索..."
+  },
+  "filter": {
+    "priority": "優先度:",
+    "category": "カテゴリ:",
+    "all": "すべて",
+    "active": "有効",
+    "completed": "完了",
+    "today": "今日",
+    "week": "今週"
+  },
+  "progress": {
+    "today": "本日の進捗",
+    "of": "of"
+  },
+  "priority": {
+    "high": "高",
+    "medium": "中",
+    "low": "低"
+  },
+  "category": {
+    "work": "仕事",
+    "personal": "個人",
+    "health": "健康",
+    "learning": "学習"
+  },
+  "stats": {
+    "title": "週間統計",
+    "byDay": "曜日別",
+    "total": "総タスク数",
+    "thisWeek": "今週",
+    "completion": "完了率"
+  },
+  "premium": {
+    "title": "AI生産性分析",
+    "description": "タスクパターンを分析して生産性向上のヒントを得る",
+    "analysisTitle": "AI生産性分析結果",
+    "analyzing": "分析中..."
+  },
+  "modal": {
+    "editTitle": "タスク編集"
+  },
+  "label": {
+    "title": "タイトル:",
+    "priority": "優先度:",
+    "category": "カテゴリ:",
+    "dueDate": "期限:",
+    "notes": "メモ:"
+  },
+  "empty": {
+    "message": "タスクを追加しましょう"
+  },
+  "confirm": {
+    "delete": "このタスクを削除してもよろしいですか？"
+  },
+  "analysis": {
+    "overview": "概要",
+    "priorities": "優先度分析",
+    "categories": "カテゴリ分析",
+    "tips": "生産性向上ヒント"
+  }
+}

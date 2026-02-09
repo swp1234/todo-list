@@ -1,0 +1,76 @@
+{
+  "app": {
+    "title": "Liste de Tâches"
+  },
+  "button": {
+    "add": "Ajouter",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "watchAd": "Regarder une annonce et obtenir l'analyse",
+    "edit": "Modifier",
+    "delete": "Supprimer"
+  },
+  "input": {
+    "placeholder": "Ajouter une nouvelle tâche...",
+    "search": "Rechercher des tâches..."
+  },
+  "filter": {
+    "priority": "Priorité:",
+    "category": "Catégorie:",
+    "all": "Tous",
+    "active": "Actif",
+    "completed": "Complété",
+    "today": "Aujourd'hui",
+    "week": "Cette semaine"
+  },
+  "progress": {
+    "today": "Progrès d'aujourd'hui",
+    "of": "sur"
+  },
+  "priority": {
+    "high": "Élevée",
+    "medium": "Moyen",
+    "low": "Basse"
+  },
+  "category": {
+    "work": "Travail",
+    "personal": "Personnel",
+    "health": "Santé",
+    "learning": "Apprentissage"
+  },
+  "stats": {
+    "title": "Statistiques Hebdomadaires",
+    "byDay": "Par Jour",
+    "total": "Total des Tâches",
+    "thisWeek": "Cette semaine",
+    "completion": "Taux de Réussite"
+  },
+  "premium": {
+    "title": "Analyse de Productivité IA",
+    "description": "Analysez vos modèles de tâches et obtenez des conseils de productivité",
+    "analysisTitle": "Résultats de l'Analyse de Productivité",
+    "analyzing": "Analyse en cours..."
+  },
+  "modal": {
+    "editTitle": "Modifier la Tâche"
+  },
+  "label": {
+    "title": "Titre:",
+    "priority": "Priorité:",
+    "category": "Catégorie:",
+    "dueDate": "Date d'Échéance:",
+    "notes": "Notes:"
+  },
+  "empty": {
+    "message": "Aucune tâche pour le moment. Ajoutez-en une pour commencer!"
+  },
+  "confirm": {
+    "delete": "Êtes-vous sûr de vouloir supprimer cette tâche?"
+  },
+  "analysis": {
+    "overview": "Résumé",
+    "priorities": "Analyse des Priorités",
+    "categories": "Analyse des Catégories",
+    "tips": "Conseils de Productivité"
+  }
+}

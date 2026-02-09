@@ -1,0 +1,76 @@
+{
+  "app": {
+    "title": "Daftar Tugas"
+  },
+  "button": {
+    "add": "Tambah",
+    "save": "Simpan",
+    "cancel": "Batal",
+    "watchAd": "Tonton Iklan dan Dapatkan Analisis",
+    "edit": "Edit",
+    "delete": "Hapus"
+  },
+  "input": {
+    "placeholder": "Tambahkan tugas baru...",
+    "search": "Cari tugas..."
+  },
+  "filter": {
+    "priority": "Prioritas:",
+    "category": "Kategori:",
+    "all": "Semua",
+    "active": "Aktif",
+    "completed": "Selesai",
+    "today": "Hari Ini",
+    "week": "Minggu Ini"
+  },
+  "progress": {
+    "today": "Kemajuan Hari Ini",
+    "of": "dari"
+  },
+  "priority": {
+    "high": "Tinggi",
+    "medium": "Sedang",
+    "low": "Rendah"
+  },
+  "category": {
+    "work": "Kerja",
+    "personal": "Pribadi",
+    "health": "Kesehatan",
+    "learning": "Pembelajaran"
+  },
+  "stats": {
+    "title": "Statistik Mingguan",
+    "byDay": "Berdasarkan Hari",
+    "total": "Total Tugas",
+    "thisWeek": "Minggu Ini",
+    "completion": "Tingkat Penyelesaian"
+  },
+  "premium": {
+    "title": "Analisis Produktivitas AI",
+    "description": "Analisis pola tugas Anda dan dapatkan tips produktivitas",
+    "analysisTitle": "Hasil Analisis Produktivitas",
+    "analyzing": "Menganalisis..."
+  },
+  "modal": {
+    "editTitle": "Edit Tugas"
+  },
+  "label": {
+    "title": "Judul:",
+    "priority": "Prioritas:",
+    "category": "Kategori:",
+    "dueDate": "Tanggal Jatuh Tempo:",
+    "notes": "Catatan:"
+  },
+  "empty": {
+    "message": "Belum ada tugas. Tambahkan satu untuk memulai!"
+  },
+  "confirm": {
+    "delete": "Apakah Anda yakin ingin menghapus tugas ini?"
+  },
+  "analysis": {
+    "overview": "Ringkasan",
+    "priorities": "Analisis Prioritas",
+    "categories": "Analisis Kategori",
+    "tips": "Tips Produktivitas"
+  }
+}

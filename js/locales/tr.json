@@ -1,0 +1,76 @@
+{
+  "app": {
+    "title": "Yapılacak Listesi"
+  },
+  "button": {
+    "add": "Ekle",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "watchAd": "Reklam İzle ve Analiz Al",
+    "edit": "Düzenle",
+    "delete": "Sil"
+  },
+  "input": {
+    "placeholder": "Yeni görev ekleyin...",
+    "search": "Görevleri ara..."
+  },
+  "filter": {
+    "priority": "Öncelik:",
+    "category": "Kategori:",
+    "all": "Tümü",
+    "active": "Aktif",
+    "completed": "Tamamlanmış",
+    "today": "Bugün",
+    "week": "Bu Hafta"
+  },
+  "progress": {
+    "today": "Bugünün İlerleme Durumu",
+    "of": "of"
+  },
+  "priority": {
+    "high": "Yüksek",
+    "medium": "Orta",
+    "low": "Düşük"
+  },
+  "category": {
+    "work": "İş",
+    "personal": "Kişisel",
+    "health": "Sağlık",
+    "learning": "Öğrenme"
+  },
+  "stats": {
+    "title": "Haftalık İstatistikler",
+    "byDay": "Güne Göre",
+    "total": "Toplam Görev",
+    "thisWeek": "Bu Hafta",
+    "completion": "Tamamlanma Oranı"
+  },
+  "premium": {
+    "title": "AI Verimlilik Analizi",
+    "description": "Görev alışkanlıklarınızı analiz edin ve verimlilik ipuçları alın",
+    "analysisTitle": "Verimlilik Analiz Sonuçları",
+    "analyzing": "Analiz ediliyor..."
+  },
+  "modal": {
+    "editTitle": "Görevi Düzenle"
+  },
+  "label": {
+    "title": "Başlık:",
+    "priority": "Öncelik:",
+    "category": "Kategori:",
+    "dueDate": "Son Tarih:",
+    "notes": "Notlar:"
+  },
+  "empty": {
+    "message": "Henüz görev yok. Başlamak için bir tane ekleyin!"
+  },
+  "confirm": {
+    "delete": "Bu görevi silmek istediğinizden emin misiniz?"
+  },
+  "analysis": {
+    "overview": "Özet",
+    "priorities": "Öncelik Analizi",
+    "categories": "Kategori Analizi",
+    "tips": "Verimlilik İpuçları"
+  }
+}

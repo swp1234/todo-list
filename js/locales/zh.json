@@ -1,0 +1,76 @@
+{
+  "app": {
+    "title": "待办事项列表"
+  },
+  "button": {
+    "add": "添加",
+    "save": "保存",
+    "cancel": "取消",
+    "watchAd": "观看广告获取分析",
+    "edit": "编辑",
+    "delete": "删除"
+  },
+  "input": {
+    "placeholder": "添加新任务...",
+    "search": "搜索任务..."
+  },
+  "filter": {
+    "priority": "优先级:",
+    "category": "分类:",
+    "all": "全部",
+    "active": "活跃",
+    "completed": "已完成",
+    "today": "今天",
+    "week": "本周"
+  },
+  "progress": {
+    "today": "今天的进度",
+    "of": "of"
+  },
+  "priority": {
+    "high": "高",
+    "medium": "中",
+    "low": "低"
+  },
+  "category": {
+    "work": "工作",
+    "personal": "个人",
+    "health": "健康",
+    "learning": "学习"
+  },
+  "stats": {
+    "title": "周间统计",
+    "byDay": "按天",
+    "total": "总任务数",
+    "thisWeek": "本周",
+    "completion": "完成率"
+  },
+  "premium": {
+    "title": "AI生产力分析",
+    "description": "分析您的任务模式并获得生产力提示",
+    "analysisTitle": "AI生产力分析结果",
+    "analyzing": "分析中..."
+  },
+  "modal": {
+    "editTitle": "编辑任务"
+  },
+  "label": {
+    "title": "标题:",
+    "priority": "优先级:",
+    "category": "分类:",
+    "dueDate": "截止日期:",
+    "notes": "备注:"
+  },
+  "empty": {
+    "message": "添加任务开始吧"
+  },
+  "confirm": {
+    "delete": "您确定要删除此任务吗？"
+  },
+  "analysis": {
+    "overview": "概述",
+    "priorities": "优先级分析",
+    "categories": "分类分析",
+    "tips": "生产力提示"
+  }
+}

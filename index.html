@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="스마트한 할일 목록 앱 - 우선순위, 카테고리, 마감일 관리">
+    <meta name="theme-color" content="#2980b9">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Todo List">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Todo List - 스마트한 할일 관리">
+    <meta property="og:description" content="우선순위, 카테고리, 마감일과 함께 할일을 관리하세요.">
+    <meta property="og:url" content="https://dopabrain.com/todo-list/">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Todo List",
+        "description": "스마트한 할일 목록 관리 앱",
+        "url": "https://dopabrain.com/todo-list/",
+        "applicationCategory": "Productivity",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J8GSWM40TV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-J8GSWM40TV');
+    </script>
+
+    <!-- AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3600813755953882"
+            crossorigin="anonymous"></script>
+
+    <title data-i18n="app.title">Todo List</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="icon-192.svg">
+    <link rel="apple-touch-icon" href="icon-192.svg">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top">
+                <h1 data-i18n="app.title">Todo List</h1>
+                <div class="header-controls">
+                    <button id="theme-toggle" class="btn-icon" title="Toggle theme" aria-label="Toggle dark/light mode">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <div class="language-selector">
+                        <button id="lang-toggle" class="btn-icon" title="Select language">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                        </button>
+                        <div id="lang-menu" class="lang-menu hidden">
+                            <button class="lang-option" data-lang="ko">🇰🇷 한국어</button>
+                            <button class="lang-option" data-lang="en">🇺🇸 English</button>
+                            <button class="lang-option" data-lang="ja">🇯🇵 日本語</button>
+                            <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
+                            <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+                            <button class="lang-option" data-lang="pt">🇧🇷 Português</button>
+                            <button class="lang-option" data-lang="id">🇮🇩 Bahasa Indonesia</button>
+                            <button class="lang-option" data-lang="tr">🇹🇷 Türkçe</button>
+                            <button class="lang-option" data-lang="de">🇩🇪 Deutsch</button>
+                            <button class="lang-option" data-lang="fr">🇫🇷 Français</button>
+                            <button class="lang-option" data-lang="hi">🇮🇳 हिन्दी</button>
+                            <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-section">
+                <div class="progress-info">
+                    <span data-i18n="progress.today">오늘의 진행률</span>
+                    <span class="progress-percent" id="progress-percent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-stats">
+                    <span id="completed-count">0</span>
+                    <span data-i18n="progress.of">of</span>
+                    <span id="total-count">0</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Top Banner Ad -->
+        <div class="ad-container ad-top">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3600813755953882" data-ad-slot="2945256603" data-ad-format="horizontal"></ins>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="input-group">
+                    <input type="text" id="input-todo" class="input-todo" placeholder="Add a new task..." data-i18n-placeholder="input.placeholder" maxlength="200">
+                    <button id="btn-add" class="btn-primary" data-i18n="button.add">Add</button>
+                </div>
+
+                <div class="filter-controls">
+                    <div class="priority-select">
+                        <label data-i18n="filter.priority">Priority:</label>
+                        <select id="select-priority">
+                            <option value="">-- All --</option>
+                            <option value="high">🔴 High</option>
+                            <option value="medium">🟡 Medium</option>
+                            <option value="low">🟢 Low</option>
+                        </select>
+                    </div>
+
+                    <div class="category-select">
+                        <label data-i18n="filter.category">Category:</label>
+                        <select id="select-category">
+                            <option value="">-- All --</option>
+                            <option value="work">💼 Work</option>
+                            <option value="personal">🎯 Personal</option>
+                            <option value="health">💪 Health</option>
+                            <option value="learning">📚 Learning</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all" data-i18n="filter.all">All</button>
+                    <button class="filter-btn" data-filter="active" data-i18n="filter.active">Active</button>
+                    <button class="filter-btn" data-filter="completed" data-i18n="filter.completed">Completed</button>
+                    <button class="filter-btn" data-filter="today" data-i18n="filter.today">Today</button>
+                    <button class="filter-btn" data-filter="week" data-i18n="filter.week">Week</button>
+                </div>
+
+                <div class="search-box">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search tasks..." data-i18n-placeholder="input.search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </div>
+            </section>
+
+            <!-- Todo List -->
+            <section class="todo-section">
+                <ul id="todo-list" class="todo-list"></ul>
+                <div id="empty-state" class="empty-state hidden">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9 11l3 3L22 4"></path>
+                        <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <p data-i18n="empty.message">할일을 추가해보세요</p>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="stats-section">
+                <h2 data-i18n="stats.title">Weekly Statistics</h2>
+                <div class="stats-container">
+                    <div class="stat-chart">
+                        <div class="stat-label" data-i18n="stats.byDay">By Day</div>
+                        <div class="chart-bars" id="chart-bars">
+                            <div class="chart-bar">
+                                <div class="bar" style="height: 0%"></div>
+                                <span>Mon</span>
+                            </div>
+                            <div class="chart-bar">
+                                <div class="bar" style="height: 0%"></div>
+                                <span>Tue</span>
+                            </div>
+                            <div class="chart-bar">
+                                <div class="bar" style="height: 0%"></div>
+                                <span>Wed</span>
+                            </div>
+                            <div class="chart-bar">
+                                <div class="bar" style="height: 0%"></div>
+                                <span>Thu</span>
+                            </div>
+                            <div class="chart-bar">
+                                <div class="bar" style="height: 0%"></div>
+                                <span>Fri</span>
+                            </div>
+                            <div class="chart-bar">
+                                <div class="bar" style="height: 0%"></div>
+                                <span>Sat</span>
+                            </div>
+                            <div class="chart-bar">
+                                <div class="bar" style="height: 0%"></div>
+                                <span>Sun</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-summary">
+                        <div class="stat-item">
+                            <div class="stat-number" id="stat-total">0</div>
+                            <div class="stat-label" data-i18n="stats.total">Total Tasks</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="stat-this-week">0</div>
+                            <div class="stat-label" data-i18n="stats.thisWeek">This Week</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="stat-completion">0%</div>
+                            <div class="stat-label" data-i18n="stats.completion">Completion</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Premium Section -->
+            <section class="premium-section">
+                <div class="premium-card">
+                    <h3 data-i18n="premium.title">AI 생산성 분석</h3>
+                    <p data-i18n="premium.description">당신의 할일 패턴을 분석하고 생산성 팁을 제공받으세요</p>
+                    <button id="btn-premium" class="btn-premium" data-i18n="button.watchAd">광고 시청하고 분석 보기</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Banner Ad -->
+        <div class="ad-container ad-bottom">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3600813755953882" data-ad-slot="8765432109" data-ad-format="horizontal"></ins>
+        </div>
+    </div>
+
+    <!-- Modal: Edit Todo -->
+    <div id="modal-edit" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h2 data-i18n="modal.editTitle">할일 수정</h2>
+
+            <div class="form-group">
+                <label data-i18n="label.title">Title:</label>
+                <input type="text" id="edit-title" class="form-input" maxlength="200">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label data-i18n="label.priority">Priority:</label>
+                    <select id="edit-priority" class="form-select">
+                        <option value="low">🟢 Low</option>
+                        <option value="medium">🟡 Medium</option>
+                        <option value="high">🔴 High</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="label.category">Category:</label>
+                    <select id="edit-category" class="form-select">
+                        <option value="work">💼 Work</option>
+                        <option value="personal">🎯 Personal</option>
+                        <option value="health">💪 Health</option>
+                        <option value="learning">📚 Learning</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label data-i18n="label.dueDate">Due Date:</label>
+                <input type="date" id="edit-duedate" class="form-input">
+            </div>
+
+            <div class="form-group">
+                <label data-i18n="label.notes">Notes:</label>
+                <textarea id="edit-notes" class="form-textarea" maxlength="500" rows="3"></textarea>
+            </div>
+
+            <div class="modal-actions">
+                <button id="modal-save" class="btn-primary" data-i18n="button.save">Save</button>
+                <button id="modal-cancel" class="btn-secondary" data-i18n="button.cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Premium Analysis -->
+    <div id="modal-premium" class="modal hidden">
+        <div class="modal-content modal-wide">
+            <button class="modal-close" id="modal-premium-close">&times;</button>
+            <h2 data-i18n="premium.analysisTitle">AI 생산성 분석 결과</h2>
+
+            <div id="premium-content" class="premium-content">
+                <div class="loading" id="premium-loading">
+                    <div class="spinner"></div>
+                    <p data-i18n="premium.analyzing">분석 중...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').then(registration => {
+                    console.log('Service Worker registered:', registration);
+                }).catch(error => {
+                    console.warn('Service Worker registration failed:', error);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+{
+  "app": {
+    "title": "할일 목록"
+  },
+  "button": {
+    "add": "추가",
+    "save": "저장",
+    "cancel": "취소",
+    "watchAd": "광고 시청하고 분석 보기",
+    "edit": "수정",
+    "delete": "삭제"
+  },
+  "input": {
+    "placeholder": "새로운 할일을 입력하세요...",
+    "search": "할일 검색..."
+  },
+  "filter": {
+    "priority": "우선순위:",
+    "category": "카테고리:",
+    "all": "전체",
+    "active": "활성",
+    "completed": "완료됨",
+    "today": "오늘",
+    "week": "이번 주"
+  },
+  "progress": {
+    "today": "오늘의 진행률",
+    "of": "of"
+  },
+  "priority": {
+    "high": "높음",
+    "medium": "중간",
+    "low": "낮음"
+  },
+  "category": {
+    "work": "업무",
+    "personal": "개인",
+    "health": "건강",
+    "learning": "학습"
+  },
+  "stats": {
+    "title": "주간 통계",
+    "byDay": "요일별",
+    "total": "전체 할일",
+    "thisWeek": "이번 주",
+    "completion": "완료율"
+  },
+  "premium": {
+    "title": "AI 생산성 분석",
+    "description": "당신의 할일 패턴을 분석하고 생산성 팁을 제공받으세요",
+    "analysisTitle": "AI 생산성 분석 결과",
+    "analyzing": "분석 중..."
+  },
+  "modal": {
+    "editTitle": "할일 수정"
+  },
+  "label": {
+    "title": "제목:",
+    "priority": "우선순위:",
+    "category": "카테고리:",
+    "dueDate": "마감일:",
+    "notes": "메모:"
+  },
+  "empty": {
+    "message": "할일을 추가해보세요"
+  },
+  "confirm": {
+    "delete": "이 할일을 삭제하시겠습니까?"
+  },
+  "analysis": {
+    "overview": "종합 분석",
+    "priorities": "우선순위 분석",
+    "categories": "카테고리 분석",
+    "tips": "생산성 팁"
+  }
+}

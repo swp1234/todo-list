@@ -1,0 +1,76 @@
+{
+  "app": {
+    "title": "Todo List"
+  },
+  "button": {
+    "add": "Add",
+    "save": "Save",
+    "cancel": "Cancel",
+    "watchAd": "Watch Ad & Get Analysis",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "input": {
+    "placeholder": "Add a new task...",
+    "search": "Search tasks..."
+  },
+  "filter": {
+    "priority": "Priority:",
+    "category": "Category:",
+    "all": "All",
+    "active": "Active",
+    "completed": "Completed",
+    "today": "Today",
+    "week": "Week"
+  },
+  "progress": {
+    "today": "Today's Progress",
+    "of": "of"
+  },
+  "priority": {
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  },
+  "category": {
+    "work": "Work",
+    "personal": "Personal",
+    "health": "Health",
+    "learning": "Learning"
+  },
+  "stats": {
+    "title": "Weekly Statistics",
+    "byDay": "By Day",
+    "total": "Total Tasks",
+    "thisWeek": "This Week",
+    "completion": "Completion Rate"
+  },
+  "premium": {
+    "title": "AI Productivity Analysis",
+    "description": "Analyze your task patterns and get productivity tips",
+    "analysisTitle": "AI Productivity Analysis Results",
+    "analyzing": "Analyzing..."
+  },
+  "modal": {
+    "editTitle": "Edit Task"
+  },
+  "label": {
+    "title": "Title:",
+    "priority": "Priority:",
+    "category": "Category:",
+    "dueDate": "Due Date:",
+    "notes": "Notes:"
+  },
+  "empty": {
+    "message": "No tasks yet. Add one to get started!"
+  },
+  "confirm": {
+    "delete": "Are you sure you want to delete this task?"
+  },
+  "analysis": {
+    "overview": "Summary",
+    "priorities": "Priority Analysis",
+    "categories": "Category Analysis",
+    "tips": "Productivity Tips"
+  }
+}
