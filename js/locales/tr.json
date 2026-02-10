@@ -71,6 +71,21 @@
     "overview": "Özet",
     "priorities": "Öncelik Analizi",
     "categories": "Kategori Analizi",
-    "tips": "Verimlilik İpuçları"
+    "tips": "Verimlilik İpuçları",
+    "analyzing": "Analiz ediliyor...",
+    "completionSummary": "{{total}} görevden {{completed}} tanesini tamamladınız.",
+    "completionRate": "Tamamlanma oranınız {{rate}}% ve verimlilik seviyeniz {{level}} olarak belirlenmiştir.",
+    "highPriorityCount": "{{count}} yüksek öncelikli göreviniz vardır.",
+    "highPriorityAdvice": "Bunlara odaklanmak daha verimli bir iş yönetimine olanak sağlayacaktır.",
+    "workTodos": "İş ile ilgili görevler",
+    "learningTodos": "Öğrenme ile ilgili görevler",
+    "categoryBalance": "İş ve öğrenme arasında iyi bir denge koruyor sunuz.",
+    "tip1": "Her sabah görev listenizi kontrol edin",
+    "tip2": "Yüksek öncelikli görevleri önce yapın",
+    "tip3": "Son tarihleri belirleyin ve zamanınızı yönetin",
+    "tip4": "Tamamlanan görevleri en az haftada bir kez gözden geçirin",
+    "productivityLevelExcellent": "Mükemmel",
+    "productivityLevelGood": "İyi",
+    "productivityLevelNeedsImprovement": "İyileştirilmesi Gerekli"
   }
 }

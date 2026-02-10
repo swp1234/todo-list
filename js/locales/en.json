@@ -71,6 +71,21 @@
     "overview": "Summary",
     "priorities": "Priority Analysis",
     "categories": "Category Analysis",
-    "tips": "Productivity Tips"
+    "tips": "Productivity Tips",
+    "analyzing": "Analyzing...",
+    "completionSummary": "You have completed {{completed}} out of {{total}} tasks.",
+    "completionRate": "Your completion rate is {{rate}}%, and your productivity level is {{level}}.",
+    "highPriorityCount": "You have {{count}} high priority tasks.",
+    "highPriorityAdvice": "Focusing on these will enable more efficient work management.",
+    "workTodos": "Work-related tasks",
+    "learningTodos": "Learning-related tasks",
+    "categoryBalance": "You are maintaining a good balance between work and learning.",
+    "tip1": "Check your task list every morning",
+    "tip2": "Handle high priority tasks first",
+    "tip3": "Set deadlines and manage your time",
+    "tip4": "Review completed tasks at least once a week",
+    "productivityLevelExcellent": "Excellent",
+    "productivityLevelGood": "Good",
+    "productivityLevelNeedsImprovement": "Needs Improvement"
   }
 }

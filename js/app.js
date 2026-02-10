@@ -564,7 +564,7 @@ class TodoApp {
     showPremiumAnalysis() {
         document.getElementById('modal-premium').classList.remove('hidden');
         const content = document.getElementById('premium-content');
-        content.innerHTML = '<div class="loading"><div class="spinner"></div><p>분석 중...</p></div>';
+        content.innerHTML = '<div class="loading"><div class="spinner"></div><p>' + i18n.t('analysis.analyzing') + '</p></div>';
 
         // Simulate ad watching and analysis
         setTimeout(() => {
@@ -587,37 +587,54 @@ class TodoApp {
         const learningTodos = this.todos.filter(t => t.category === 'learning').length;
 
         // Estimate productivity level
-        let productivityLevel = 'Good';
-        if (completionRate >= 80) productivityLevel = 'Excellent';
-        if (completionRate <= 40) productivityLevel = 'Needs Improvement';
+        let productivityLevel = i18n.t('analysis.productivityLevelGood');
+        if (completionRate >= 80) productivityLevel = i18n.t('analysis.productivityLevelExcellent');
+        if (completionRate <= 40) productivityLevel = i18n.t('analysis.productivityLevelNeedsImprovement');
+
+        // Build completion summary
+        const completionSummary = i18n.t('analysis.completionSummary')
+            .replace('{{total}}', totalTodos)
+            .replace('{{completed}}', completedTodos);
+
+        const completionRate_text = i18n.t('analysis.completionRate')
+            .replace('{{rate}}', completionRate)
+            .replace('{{level}}', productivityLevel);
+
+        const highPriorityText = i18n.t('analysis.highPriorityCount')
+            .replace('{{count}}', highPriority);
+
+        const highPriorityAdvice = i18n.t('analysis.highPriorityAdvice');
+
+        const categoryText = i18n.t('analysis.workTodos') + ': ' + workTodos + ', ' +
+                           i18n.t('analysis.learningTodos') + ': ' + learningTodos + '. ' +
+                           i18n.t('analysis.categoryBalance');
 
         const html = `
             <div class="analysis-result">
                 <div class="analysis-item">
-                    <h4>📊 ${i18n.t('analysis.overview') || '종합 분석'}</h4>
-                    <p>당신은 총 <strong>${totalTodos}</strong>개의 할일 중 <strong>${completedTodos}</strong>개를 완료했습니다.
-                    완료율은 <strong>${completionRate}%</strong>이며, 생산성 수준은 <strong>${productivityLevel}</strong> 입니다.</p>
+                    <h4>📊 ${i18n.t('analysis.overview')}</h4>
+                    <p>${completionSummary}
+                    ${completionRate_text}</p>
                 </div>
 
                 <div class="analysis-item">
-                    <h4>🎯 ${i18n.t('analysis.priorities') || '우선순위 분석'}</h4>
-                    <p>높은 우선순위 할일이 <strong>${highPriority}</strong>개 있습니다.
-                    이들에 집중하면 더 효율적인 업무 처리가 가능합니다.</p>
+                    <h4>🎯 ${i18n.t('analysis.priorities')}</h4>
+                    <p>${highPriorityText}
+                    ${highPriorityAdvice}</p>
                 </div>
 
                 <div class="analysis-item">
-                    <h4>💼 ${i18n.t('analysis.categories') || '카테고리 분석'}</h4>
-                    <p>업무 관련 할일: <strong>${workTodos}</strong>개, 학습 관련 할일: <strong>${learningTodos}</strong>개.
-                    일과 학습의 균형을 적절히 유지하고 있습니다.</p>
+                    <h4>💼 ${i18n.t('analysis.categories')}</h4>
+                    <p>${categoryText}</p>
                 </div>
 
                 <div class="analysis-item">
-                    <h4>💡 ${i18n.t('analysis.tips') || '생산성 팁'}</h4>
+                    <h4>💡 ${i18n.t('analysis.tips')}</h4>
                     <ul style="margin-top: 8px; margin-left: 20px;">
-                        <li>매일 아침 오늘의 할일 목록을 확인하세요</li>
-                        <li>높은 우선순위 할일부터 처리하세요</li>
-                        <li>마감일을 설정하고 시간 관리를 하세요</li>
-                        <li>주 1회 이상 완료한 할일을 검토하세요</li>
+                        <li>${i18n.t('analysis.tip1')}</li>
+                        <li>${i18n.t('analysis.tip2')}</li>
+                        <li>${i18n.t('analysis.tip3')}</li>
+                        <li>${i18n.t('analysis.tip4')}</li>
                     </ul>
                 </div>
             </div>

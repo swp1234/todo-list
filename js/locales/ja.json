@@ -71,6 +71,21 @@
     "overview": "概要",
     "priorities": "優先度分析",
     "categories": "カテゴリ分析",
-    "tips": "生産性向上ヒント"
+    "tips": "生産性向上ヒント",
+    "analyzing": "分析中...",
+    "completionSummary": "{{total}}個のタスクのうち{{completed}}個を完了しました。",
+    "completionRate": "完了率は{{rate}}%で、生産性レベルは{{level}}です。",
+    "highPriorityCount": "{{count}}個の高優先度タスクがあります。",
+    "highPriorityAdvice": "これらのタスクに焦点を当てることで、より効率的な作業が可能になります。",
+    "workTodos": "仕事関連のタスク",
+    "learningTodos": "学習関連のタスク",
+    "categoryBalance": "仕事と学習のバランスを保つことができています。",
+    "tip1": "毎朝タスクリストを確認してください",
+    "tip2": "高優先度のタスクから処理してください",
+    "tip3": "締め切りを設定して時間管理をしてください",
+    "tip4": "週に1回以上完了したタスクを確認してください",
+    "productivityLevelExcellent": "優秀",
+    "productivityLevelGood": "良好",
+    "productivityLevelNeedsImprovement": "改善が必要"
   }
 }

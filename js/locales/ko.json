@@ -71,6 +71,21 @@
     "overview": "종합 분석",
     "priorities": "우선순위 분석",
     "categories": "카테고리 분석",
-    "tips": "생산성 팁"
+    "tips": "생산성 팁",
+    "analyzing": "분석 중...",
+    "completionSummary": "당신은 총 {{total}}개의 할일 중 {{completed}}개를 완료했습니다.",
+    "completionRate": "완료율은 {{rate}}%이며, 생산성 수준은 {{level}} 입니다.",
+    "highPriorityCount": "높은 우선순위 할일이 {{count}}개 있습니다.",
+    "highPriorityAdvice": "이들에 집중하면 더 효율적인 업무 처리가 가능합니다.",
+    "workTodos": "업무 관련 할일",
+    "learningTodos": "학습 관련 할일",
+    "categoryBalance": "일과 학습의 균형을 적절히 유지하고 있습니다.",
+    "tip1": "매일 아침 오늘의 할일 목록을 확인하세요",
+    "tip2": "높은 우선순위 할일부터 처리하세요",
+    "tip3": "마감일을 설정하고 시간 관리를 하세요",
+    "tip4": "주 1회 이상 완료한 할일을 검토하세요",
+    "productivityLevelExcellent": "Excellent",
+    "productivityLevelGood": "Good",
+    "productivityLevelNeedsImprovement": "Needs Improvement"
   }
 }

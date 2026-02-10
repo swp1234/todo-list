@@ -71,6 +71,21 @@
     "overview": "Übersicht",
     "priorities": "Prioritätsanalyse",
     "categories": "Kategorieanalyse",
-    "tips": "Produktivitätstipps"
+    "tips": "Produktivitätstipps",
+    "analyzing": "Wird analysiert...",
+    "completionSummary": "Sie haben {{completed}} von {{total}} Aufgaben abgeschlossen.",
+    "completionRate": "Ihre Abschlussquote beträgt {{rate}}% und Ihr Produktivitätsniveau ist {{level}}.",
+    "highPriorityCount": "Sie haben {{count}} hochpriorisierte Aufgaben.",
+    "highPriorityAdvice": "Die Konzentration auf diese ermöglicht ein effizienteres Arbeitsmanagement.",
+    "workTodos": "Arbeitsbezogene Aufgaben",
+    "learningTodos": "Lernbezogene Aufgaben",
+    "categoryBalance": "Sie bewahren ein gutes Gleichgewicht zwischen Arbeit und Lernen.",
+    "tip1": "Überprüfen Sie Ihre Aufgabenliste jeden Morgen",
+    "tip2": "Bearbeiten Sie hochpriorisierte Aufgaben zuerst",
+    "tip3": "Legen Sie Fristen fest und verwalten Sie Ihre Zeit",
+    "tip4": "Überprüfen Sie abgeschlossene Aufgaben mindestens einmal pro Woche",
+    "productivityLevelExcellent": "Ausgezeichnet",
+    "productivityLevelGood": "Gut",
+    "productivityLevelNeedsImprovement": "Verbesserung erforderlich"
   }
 }

@@ -71,6 +71,21 @@
     "overview": "Ringkasan",
     "priorities": "Analisis Prioritas",
     "categories": "Analisis Kategori",
-    "tips": "Tips Produktivitas"
+    "tips": "Tips Produktivitas",
+    "analyzing": "Menganalisis...",
+    "completionSummary": "Anda telah menyelesaikan {{completed}} dari {{total}} tugas.",
+    "completionRate": "Tingkat penyelesaian Anda adalah {{rate}}%, dan tingkat produktivitas Anda adalah {{level}}.",
+    "highPriorityCount": "Anda memiliki {{count}} tugas prioritas tinggi.",
+    "highPriorityAdvice": "Fokus pada ini akan memungkinkan manajemen pekerjaan yang lebih efisien.",
+    "workTodos": "Tugas yang berkaitan dengan pekerjaan",
+    "learningTodos": "Tugas yang berkaitan dengan pembelajaran",
+    "categoryBalance": "Anda mempertahankan keseimbangan yang baik antara pekerjaan dan pembelajaran.",
+    "tip1": "Periksa daftar tugas Anda setiap pagi",
+    "tip2": "Tangani tugas prioritas tinggi terlebih dahulu",
+    "tip3": "Tetapkan tenggat waktu dan kelola waktu Anda",
+    "tip4": "Tinjau tugas yang diselesaikan setidaknya sekali seminggu",
+    "productivityLevelExcellent": "Sangat Baik",
+    "productivityLevelGood": "Baik",
+    "productivityLevelNeedsImprovement": "Perlu Diperbaiki"
   }
 }

@@ -71,6 +71,21 @@
     "overview": "概述",
     "priorities": "优先级分析",
     "categories": "分类分析",
-    "tips": "生产力提示"
+    "tips": "生产力提示",
+    "analyzing": "分析中...",
+    "completionSummary": "您已完成{{completed}}项任务，总共{{total}}项。",
+    "completionRate": "完成率为{{rate}}%，您的生产力水平是{{level}}。",
+    "highPriorityCount": "您有{{count}}项高优先级任务。",
+    "highPriorityAdvice": "专注于这些任务可以提高工作效率。",
+    "workTodos": "工作相关任务",
+    "learningTodos": "学习相关任务",
+    "categoryBalance": "您保持了工作和学习的良好平衡。",
+    "tip1": "每天早上检查您的任务清单",
+    "tip2": "先处理高优先级任务",
+    "tip3": "设置截止日期并进行时间管理",
+    "tip4": "每周至少检查一次已完成任务",
+    "productivityLevelExcellent": "优秀",
+    "productivityLevelGood": "良好",
+    "productivityLevelNeedsImprovement": "需要改进"
   }
 }

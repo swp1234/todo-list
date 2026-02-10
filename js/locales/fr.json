@@ -71,6 +71,21 @@
     "overview": "Résumé",
     "priorities": "Analyse des Priorités",
     "categories": "Analyse des Catégories",
-    "tips": "Conseils de Productivité"
+    "tips": "Conseils de Productivité",
+    "analyzing": "Analyse en cours...",
+    "completionSummary": "Vous avez complété {{completed}} sur {{total}} tâches.",
+    "completionRate": "Votre taux de réussite est {{rate}}%, et votre niveau de productivité est {{level}}.",
+    "highPriorityCount": "Vous avez {{count}} tâches de haute priorité.",
+    "highPriorityAdvice": "Se concentrer sur celles-ci permettra une gestion du travail plus efficace.",
+    "workTodos": "Tâches liées au travail",
+    "learningTodos": "Tâches liées à l'apprentissage",
+    "categoryBalance": "Vous maintenez un bon équilibre entre le travail et l'apprentissage.",
+    "tip1": "Vérifiez votre liste de tâches chaque matin",
+    "tip2": "Gérez d'abord les tâches de haute priorité",
+    "tip3": "Définissez des délais et gérez votre temps",
+    "tip4": "Passez en revue les tâches complétées au moins une fois par semaine",
+    "productivityLevelExcellent": "Excellent",
+    "productivityLevelGood": "Bien",
+    "productivityLevelNeedsImprovement": "Amélioration requise"
   }
 }
