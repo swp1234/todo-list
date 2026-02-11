@@ -9,6 +9,7 @@ class I18n {
         this.supportedLanguages = ['ko', 'en', 'ja', 'zh', 'es', 'pt', 'id', 'tr', 'de', 'fr', 'hi', 'ru'];
         this.currentLang = this.detectLanguage();
         this.loadedLanguages = new Set();
+        this.initialized = false;
     }
 
     /**
@@ -124,9 +125,15 @@ class I18n {
      * Initialize i18n: load current language and update UI
      */
     async init() {
-        await this.loadTranslations(this.currentLang);
-        this.updateUI();
-        this.setupLanguageSelector();
+        try {
+            await this.loadTranslations(this.currentLang);
+            this.updateUI();
+            this.setupLanguageSelector();
+        } catch (e) {
+            console.warn('i18n init failed:', e);
+        } finally {
+            this.initialized = true;
+        }
     }
 
     /**
@@ -225,7 +232,9 @@ const i18n = new I18n();
 
 // Initialize i18n when DOM is ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => i18n.init());
+    document.addEventListener('DOMContentLoaded', () => {
+        try { i18n.init(); } catch(e) { console.warn('i18n init error:', e); }
+    });
 } else {
-    i18n.init();
+    try { i18n.init(); } catch(e) { console.warn('i18n init error:', e); }
 }
