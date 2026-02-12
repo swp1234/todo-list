@@ -3,7 +3,7 @@
  * Enables offline functionality and caching
  */
 
-const CACHE_NAME = 'todo-list-v1';
+const CACHE_NAME = 'todo-list-v2';
 const ASSETS_TO_CACHE = [
   '/todo-list/index.html',
   '/todo-list/css/style.css',
@@ -60,49 +60,27 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-// Fetch event: serve from cache, fallback to network
+// Fetch event: network first, fallback to cache
 self.addEventListener('fetch', event => {
-  // Only handle GET requests
-  if (event.request.method !== 'GET') {
-    return;
-  }
+  if (event.request.method !== 'GET') return;
 
-  // Skip cross-origin requests
-  if (!event.request.url.includes('/todo-list/')) {
-    return;
-  }
+  // Skip external requests (ads, analytics, etc.)
+  if (!event.request.url.startsWith(self.location.origin)) return;
 
   event.respondWith(
-    caches.match(event.request)
+    fetch(event.request)
       .then(response => {
-        // Return cached response if available
-        if (response) {
-          return response;
-        }
-
-        // Fetch from network
-        return fetch(event.request)
-          .then(response => {
-            // Don't cache non-successful responses
-            if (!response || response.status !== 200 || response.type === 'error') {
-              return response;
-            }
-
-            // Clone response for caching
-            const responseClone = response.clone();
-            caches.open(CACHE_NAME).then(cache => {
-              cache.put(event.request, responseClone);
-            });
-
-            return response;
-          })
-          .catch(() => {
-            // Offline fallback
-            return new Response('Offline - Using cached data', {
-              status: 200,
-              statusText: 'OK'
-            });
+        if (response && response.status === 200) {
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, responseToCache);
           });
+        }
+        return response;
+      })
+      .catch(() => {
+        return caches.match(event.request)
+          .then(cached => cached || caches.match('/todo-list/index.html'));
       })
   );
 });
