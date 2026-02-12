@@ -179,7 +179,47 @@ class TodoApp {
      */
     loadTodos() {
         const saved = localStorage.getItem('todos');
-        this.todos = saved ? JSON.parse(saved) : [];
+        if (saved) {
+            this.todos = JSON.parse(saved);
+        } else {
+            // First visit: add sample todos to show app value immediately
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            this.todos = [
+                {
+                    id: Date.now(),
+                    title: '✅ Tap to complete a task',
+                    completed: false,
+                    priority: 'high',
+                    category: 'personal',
+                    dueDate: now.toISOString().split('T')[0],
+                    notes: '',
+                    createdAt: now.toISOString()
+                },
+                {
+                    id: Date.now() + 1,
+                    title: '📝 Try adding your own task above',
+                    completed: false,
+                    priority: 'medium',
+                    category: 'learning',
+                    dueDate: tomorrow.toISOString().split('T')[0],
+                    notes: '',
+                    createdAt: now.toISOString()
+                },
+                {
+                    id: Date.now() + 2,
+                    title: '🎯 Set priorities and categories',
+                    completed: false,
+                    priority: 'low',
+                    category: 'work',
+                    dueDate: '',
+                    notes: '',
+                    createdAt: now.toISOString()
+                }
+            ];
+            this.saveTodos();
+        }
     }
 
     /**
