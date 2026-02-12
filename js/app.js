@@ -256,6 +256,7 @@ class TodoApp {
         this.renderTodos();
         this.updateProgress();
         this.updateStats();
+        if(typeof gtag!=='undefined') gtag('event','add_todo');
     }
 
     /**
@@ -273,6 +274,7 @@ class TodoApp {
 
             if (todo.completed) {
                 this.playConfetti();
+                if(typeof gtag!=='undefined') gtag('event','complete_todo');
             }
         }
     }
