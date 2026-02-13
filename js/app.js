@@ -46,6 +46,56 @@ class TodoApp {
             loader.classList.add('hidden');
             setTimeout(() => loader.remove(), 300);
         }
+
+        // First visit: highlight input and pulse add button
+        this.enhanceFirstVisitUX();
+
+        // Track engagement for GA4 bounce rate improvement
+        this.engagementTracked = false;
+    }
+
+    /**
+     * Enhance UX for first-time visitors to reduce bounce
+     */
+    enhanceFirstVisitUX() {
+        const input = document.getElementById('input-todo');
+        const addBtn = document.getElementById('btn-add');
+
+        // Auto-focus input field
+        setTimeout(() => {
+            if (input) {
+                input.focus();
+                input.classList.add('highlight');
+                // Remove highlight after animation
+                setTimeout(() => input.classList.remove('highlight'), 6000);
+            }
+            // Add pulse to add button
+            if (addBtn) addBtn.classList.add('pulse');
+        }, 500);
+
+        // Remove pulse on first interaction
+        const removePulse = () => {
+            if (addBtn) addBtn.classList.remove('pulse');
+            this.trackEngagement('first_interaction');
+            document.removeEventListener('click', removePulse);
+            document.removeEventListener('keydown', removePulse);
+        };
+        document.addEventListener('click', removePulse, { once: true });
+        document.addEventListener('keydown', removePulse, { once: true });
+    }
+
+    /**
+     * Track GA4 engagement event (reduces bounce rate)
+     */
+    trackEngagement(label) {
+        if (this.engagementTracked) return;
+        this.engagementTracked = true;
+        if (typeof gtag === 'function') {
+            gtag('event', 'engagement', {
+                event_category: 'todo_list',
+                event_label: label
+            });
+        }
     }
 
     /**
@@ -257,6 +307,7 @@ class TodoApp {
         this.updateProgress();
         this.updateStats();
         if(typeof gtag!=='undefined') gtag('event','add_todo');
+        this.trackEngagement('add_todo');
     }
 
     /**
@@ -275,6 +326,7 @@ class TodoApp {
             if (todo.completed) {
                 this.playConfetti();
                 if(typeof gtag!=='undefined') gtag('event','complete_todo');
+                this.trackEngagement('complete_todo');
             }
         }
     }
