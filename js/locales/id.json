@@ -38,6 +38,19 @@
     "health": "Kesehatan",
     "learning": "Pembelajaran"
   },
+  "days": {
+    "mon": "Sen",
+    "tue": "Sel",
+    "wed": "Rab",
+    "thu": "Kam",
+    "fri": "Jum",
+    "sat": "Sab",
+    "sun": "Min"
+  },
+  "share": {
+    "button": "Bagikan",
+    "linkCopied": "Tautan disalin!"
+  },
   "stats": {
     "title": "Statistik Mingguan",
     "byDay": "Berdasarkan Hari",

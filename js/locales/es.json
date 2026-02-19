@@ -38,6 +38,19 @@
     "health": "Salud",
     "learning": "Aprendizaje"
   },
+  "days": {
+    "mon": "Lun",
+    "tue": "Mar",
+    "wed": "Mié",
+    "thu": "Jue",
+    "fri": "Vie",
+    "sat": "Sáb",
+    "sun": "Dom"
+  },
+  "share": {
+    "button": "Compartir",
+    "linkCopied": "¡Enlace copiado!"
+  },
   "stats": {
     "title": "Estadísticas Semanales",
     "byDay": "Por Día",

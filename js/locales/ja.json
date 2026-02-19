@@ -38,6 +38,19 @@
     "health": "健康",
     "learning": "学習"
   },
+  "days": {
+    "mon": "月",
+    "tue": "火",
+    "wed": "水",
+    "thu": "木",
+    "fri": "金",
+    "sat": "土",
+    "sun": "日"
+  },
+  "share": {
+    "button": "シェア",
+    "linkCopied": "リンクをコピーしました！"
+  },
   "stats": {
     "title": "週間統計",
     "byDay": "曜日別",

@@ -38,6 +38,19 @@
     "health": "Sağlık",
     "learning": "Öğrenme"
   },
+  "days": {
+    "mon": "Pzt",
+    "tue": "Sal",
+    "wed": "Çar",
+    "thu": "Per",
+    "fri": "Cum",
+    "sat": "Cmt",
+    "sun": "Paz"
+  },
+  "share": {
+    "button": "Paylaş",
+    "linkCopied": "Bağlantı kopyalandı!"
+  },
   "stats": {
     "title": "Haftalık İstatistikler",
     "byDay": "Güne Göre",

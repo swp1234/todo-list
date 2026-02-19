@@ -38,6 +38,19 @@
     "health": "Health",
     "learning": "Learning"
   },
+  "days": {
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "sun": "Sun"
+  },
+  "share": {
+    "button": "Share",
+    "linkCopied": "Link copied!"
+  },
   "stats": {
     "title": "Weekly Statistics",
     "byDay": "By Day",

@@ -38,6 +38,19 @@
     "health": "건강",
     "learning": "학습"
   },
+  "days": {
+    "mon": "월",
+    "tue": "화",
+    "wed": "수",
+    "thu": "목",
+    "fri": "금",
+    "sat": "토",
+    "sun": "일"
+  },
+  "share": {
+    "button": "공유",
+    "linkCopied": "링크가 복사되었습니다!"
+  },
   "stats": {
     "title": "주간 통계",
     "byDay": "요일별",
