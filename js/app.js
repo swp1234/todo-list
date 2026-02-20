@@ -466,25 +466,24 @@ class TodoApp {
      * Get priority label
      */
     getPriorityLabel(priority) {
-        const labels = {
-            high: i18n.t('priority.high'),
-            medium: i18n.t('priority.medium'),
-            low: i18n.t('priority.low')
-        };
-        return labels[priority] || priority;
+        const fallback = { high: 'High', medium: 'Medium', low: 'Low' };
+        if (window.i18n && i18n.initialized) {
+            const val = i18n.t(`priority.${priority}`);
+            if (val && val !== `priority.${priority}`) return val;
+        }
+        return fallback[priority] || priority;
     }
 
     /**
      * Get category label
      */
     getCategoryLabel(category) {
-        const labels = {
-            work: i18n.t('category.work'),
-            personal: i18n.t('category.personal'),
-            health: i18n.t('category.health'),
-            learning: i18n.t('category.learning')
-        };
-        return labels[category] || category;
+        const fallback = { work: 'Work', personal: 'Personal', health: 'Health', learning: 'Learning' };
+        if (window.i18n && i18n.initialized) {
+            const val = i18n.t(`category.${category}`);
+            if (val && val !== `category.${category}`) return val;
+        }
+        return fallback[category] || category;
     }
 
     /**
@@ -542,7 +541,7 @@ class TodoApp {
                     </div>
                     <div class="todo-meta">
                         ${dueDateHtml}
-                        ${todo.notes ? `<div style="margin-top: 4px; color: rgba(232,232,240,0.6);">📝 ${this.escapeHtml(todo.notes)}</div>` : ''}
+                        ${todo.notes ? `<div class="todo-notes">📝 ${this.escapeHtml(todo.notes)}</div>` : ''}
                     </div>
                 </div>
                 <div class="todo-actions">

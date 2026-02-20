@@ -691,6 +691,16 @@ body.light-mode .todo-meta {
     color: rgba(15, 15, 35, 0.6);
 }
 
+.todo-notes {
+    margin-top: 4px;
+    color: rgba(232, 232, 240, 0.6);
+}
+
+body.light-mode .todo-notes,
+[data-theme="light"] .todo-notes {
+    color: rgba(15, 15, 35, 0.6);
+}
+
 .todo-actions {
     display: flex;
     gap: var(--spacing-xs);
@@ -1249,7 +1259,27 @@ body.light-mode .analysis-item p {
 }
 
 [data-theme="light"] .todo-text {
-    color: var(--color-text-light);
+    color: #1a1a2e;
+}
+
+[data-theme="light"] .priority-badge {
+    color: #1a1a2e;
+}
+
+[data-theme="light"] .priority-badge.high {
+    color: #c0392b;
+}
+
+[data-theme="light"] .priority-badge.medium {
+    color: #d68910;
+}
+
+[data-theme="light"] .priority-badge.low {
+    color: #1e8449;
+}
+
+[data-theme="light"] .category-badge {
+    color: #1a5276;
 }
 
 [data-theme="light"] .due-date {
