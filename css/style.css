@@ -312,6 +312,14 @@ body.light-mode .lang-option {
     text-align: center;
 }
 
+body.light-mode .progress-stats {
+    color: rgba(15, 15, 35, 0.6);
+}
+
+body.light-mode .progress-bar {
+    background: rgba(0, 0, 0, 0.1);
+}
+
 /* Main Content */
 .main-content {
     flex: 1;
@@ -1352,6 +1360,25 @@ body.light-mode .analysis-item p {
     color: rgba(15, 15, 35, 0.8);
 }
 
+[data-theme="light"] .progress-bar {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .progress-stats {
+    color: rgba(26, 26, 46, 0.6);
+}
+
+[data-theme="light"] .priority-select select option,
+[data-theme="light"] .category-select select option {
+    background: #ffffff;
+    color: #1a1a2e;
+}
+
+[data-theme="light"] .ad-container {
+    background: rgba(41, 128, 185, 0.03);
+    border: 1px dashed rgba(41, 128, 185, 0.15);
+}
+
 .theme-toggle {
     position: fixed;
     top: 12px;
@@ -1467,9 +1494,4 @@ body.light-mode .analysis-item p {
     }
 }
 
-@media (prefers-color-scheme: light) {
-    body {
-        background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
-        color: var(--color-text-light);
-    }
-}
+/* prefers-color-scheme handled by data-theme attribute set via JS */
