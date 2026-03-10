@@ -1177,6 +1177,7 @@ body.light-mode .analysis-item p {
     --color-text-light: #1a1a2e;
     --color-border-dark: #e0e0e8;
     --color-border-light: #e0e0e8;
+    --text: #1a1a2e;
 }
 
 [data-theme="light"] body {
