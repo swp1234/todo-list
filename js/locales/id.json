@@ -100,5 +100,12 @@
     "productivityLevelExcellent": "Sangat Baik",
     "productivityLevelGood": "Baik",
     "productivityLevelNeedsImprovement": "Perlu Diperbaiki"
+  },
+  "related": {
+    "title": "Jelajahi lainnya",
+    "pomodoroTimer": "Timer Pomodoro",
+    "routinePlanner": "Perencana Rutinitas",
+    "habitTracker": "Pelacak Kebiasaan",
+    "ddayCounter": "Hitung Mundur"
   }
 }

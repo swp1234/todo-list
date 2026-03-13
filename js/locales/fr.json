@@ -100,5 +100,12 @@
     "productivityLevelExcellent": "Excellent",
     "productivityLevelGood": "Bien",
     "productivityLevelNeedsImprovement": "Amélioration requise"
+  },
+  "related": {
+    "title": "À découvrir",
+    "pomodoroTimer": "Minuteur Pomodoro",
+    "routinePlanner": "Planificateur de routine",
+    "habitTracker": "Suivi des habitudes",
+    "ddayCounter": "Compte à rebours"
   }
 }

@@ -100,5 +100,12 @@
     "productivityLevelExcellent": "उत्कृष्ट",
     "productivityLevelGood": "अच्छा",
     "productivityLevelNeedsImprovement": "सुधार की आवश्यकता"
+  },
+  "related": {
+    "title": "और खोजें",
+    "pomodoroTimer": "पोमोडोरो टाइमर",
+    "routinePlanner": "दिनचर्या योजक",
+    "habitTracker": "आदत ट्रैकर",
+    "ddayCounter": "डी-डे काउंटर"
   }
 }

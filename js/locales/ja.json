@@ -100,5 +100,12 @@
     "productivityLevelExcellent": "優秀",
     "productivityLevelGood": "良好",
     "productivityLevelNeedsImprovement": "改善が必要"
+  },
+  "related": {
+    "title": "もっと楽しむ",
+    "pomodoroTimer": "ポモドーロタイマー",
+    "routinePlanner": "ルーティンプランナー",
+    "habitTracker": "習慣トラッカー",
+    "ddayCounter": "Dデイカウンター"
   }
 }

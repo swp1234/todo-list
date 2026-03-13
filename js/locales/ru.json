@@ -100,5 +100,12 @@
     "productivityLevelExcellent": "Отлично",
     "productivityLevelGood": "Хорошо",
     "productivityLevelNeedsImprovement": "Нужно улучшение"
+  },
+  "related": {
+    "title": "Ещё интересное",
+    "pomodoroTimer": "Помодоро-таймер",
+    "routinePlanner": "Планировщик",
+    "habitTracker": "Трекер привычек",
+    "ddayCounter": "Счётчик дней"
   }
 }

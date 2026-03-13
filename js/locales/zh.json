@@ -100,5 +100,12 @@
     "productivityLevelExcellent": "优秀",
     "productivityLevelGood": "良好",
     "productivityLevelNeedsImprovement": "需要改进"
+  },
+  "related": {
+    "title": "探索更多",
+    "pomodoroTimer": "番茄钟",
+    "routinePlanner": "日程规划",
+    "habitTracker": "习惯追踪",
+    "ddayCounter": "倒数日"
   }
 }

@@ -100,5 +100,12 @@
     "productivityLevelExcellent": "Mükemmel",
     "productivityLevelGood": "İyi",
     "productivityLevelNeedsImprovement": "İyileştirilmesi Gerekli"
+  },
+  "related": {
+    "title": "Daha fazla keşfet",
+    "pomodoroTimer": "Pomodoro Zamanlayıcı",
+    "routinePlanner": "Rutin Planlayıcı",
+    "habitTracker": "Alışkanlık Takibi",
+    "ddayCounter": "Geri Sayım"
   }
 }
