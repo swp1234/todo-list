@@ -8,6 +8,7 @@ class I18n {
         this.translations = {};
         this.supportedLanguages = ['ko', 'en', 'ja', 'zh', 'es', 'pt', 'id', 'tr', 'de', 'fr', 'hi', 'ru'];
         this.currentLang = this.detectLanguage();
+        document.documentElement.lang = this.currentLang;
         this.loadedLanguages = new Set();
         this.initialized = false;
     }
@@ -17,6 +18,14 @@ class I18n {
      * Priority: localStorage > browser > default (en)
      */
     detectLanguage() {
+        try {
+            const params = new URLSearchParams(window.location.search || '');
+            const urlLang = params.get('lang');
+            if (urlLang && this.supportedLanguages.includes(urlLang)) {
+                return urlLang;
+            }
+        } catch (error) {}
+
         // Check localStorage
         const savedLang = localStorage.getItem('selectedLanguage');
         if (savedLang && this.supportedLanguages.includes(savedLang)) {
@@ -92,6 +101,7 @@ class I18n {
         await this.loadTranslations(lang);
         this.currentLang = lang;
         localStorage.setItem('selectedLanguage', lang);
+        document.documentElement.lang = lang;
         this.updateUI();
 
         // Dispatch event for app to respond
