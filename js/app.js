@@ -217,10 +217,7 @@ class TodoApp {
     loadAds() {
         if (typeof window.adsbygoogle !== 'undefined') {
             window.adsbygoogle = window.adsbygoogle || [];
-            window.adsbygoogle.push({
-                google_ad_client: 'ca-pub-3600813755953882',
-                enable_page_level_ads: true
-            });
+
         }
     }
 
